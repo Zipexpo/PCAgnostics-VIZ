@@ -88,3 +88,11 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('build', ['html', 'data', 'misc', 'zeroclipboard']);
+
+gulp.task('scripts', ['clean'], function () {
+    return gulp.src('js/*.js')
+        .pipe(uglify().on('error', function(e){
+            console.log(e);
+        }))
+        .pipe(gulp.dest('minjs'));
+});
